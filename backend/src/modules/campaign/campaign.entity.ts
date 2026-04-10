@@ -33,4 +33,7 @@ export class Campaign {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @Column({ name: 'background_image', type: 'text', nullable: true })
+  backgroundImage: string | null;
 }

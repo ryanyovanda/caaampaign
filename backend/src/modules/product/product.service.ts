@@ -2,6 +2,7 @@ import { Injectable, ConflictException, NotFoundException } from "@nestjs/common
 import { InjectRepository } from "@nestjs/typeorm";
 import { Product } from "./product.entity";
 import { Repository } from "typeorm";
+import { CampaignService } from "../campaign/campaign.service";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 
@@ -10,9 +11,12 @@ export class ProductService {
     constructor(
         @InjectRepository(Product)
         private readonly productRepo: Repository<Product>,
+        private readonly campaignService: CampaignService,
     ) {}
 
     async create(dto: CreateProductDto): Promise<Product> {
+        await this.campaignService.findOne(dto.campaignId);
+
         const existing = await this.productRepo.findOneBy({productName: dto.productName})
         if(existing) {
             throw new ConflictException(`Product "${dto.productName}" is already in use`)

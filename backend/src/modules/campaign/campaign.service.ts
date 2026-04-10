@@ -23,6 +23,7 @@ export class CampaignService {
       slug: dto.slug,
       description: dto.description,
       status: dto.status,
+      backgroundImage: dto.backgroundImage ?? null,
     });
 
     return this.campaignRepo.save(campaign);
@@ -63,6 +64,7 @@ export class CampaignService {
       ...(dto.slug !== undefined && { slug: dto.slug }),
       ...(dto.description !== undefined && { description: dto.description }),
       ...(dto.status !== undefined && { status: dto.status }),
+      ...(dto.backgroundImage !== undefined && { backgroundImage: dto.backgroundImage }),
     });
 
     return this.campaignRepo.save(campaign);

@@ -8,17 +8,32 @@ import {
   Param,
   Patch,
   Post,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { CampaignService } from './campaign.service';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { CreateCampaignDto } from './dto/create-campaign.dto';
 import { UpdateCampaignDto } from './dto/update-campaign.dto';
 
 @Controller('campaigns')
 export class CampaignController {
-  constructor(private readonly campaignService: CampaignService) {}
+  constructor(
+    private readonly campaignService: CampaignService,
+    private readonly cloudinaryService: CloudinaryService,
+  ) {}
 
   @Post()
-  create(@Body() dto: CreateCampaignDto) {
+  @UseInterceptors(FileInterceptor('backgroundImage'))
+  async create(
+    @Body() dto: CreateCampaignDto,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    if (file) {
+      const result = await this.cloudinaryService.uploadImage(file);
+      dto.backgroundImage = result.secure_url;
+    }
     return this.campaignService.create(dto);
   }
   @Get()

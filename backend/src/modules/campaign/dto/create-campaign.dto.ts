@@ -20,4 +20,8 @@ export class CreateCampaignDto {
   @IsEnum(CampaignStatus)
   @IsOptional()
   status?: CampaignStatus;
+
+  @IsString()
+  @IsOptional()
+  backgroundImage?: string;
 }
