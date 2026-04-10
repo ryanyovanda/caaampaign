@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { apiFetch } from '@/lib/api';
 
 type Campaign = {
   id: string;
@@ -11,10 +12,7 @@ type Campaign = {
 };
 
 async function getCampaignBySlug(slug: string): Promise<Campaign | null> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/campaigns/slug/${slug}`,
-    { cache: 'no-store' },
-  );
+  const res = await apiFetch(`/campaigns/slug/${slug}`, { cache: 'no-store' });
 
   if (res.status === 404) return null;
   if (!res.ok) throw new Error('Failed to fetch campaign');
