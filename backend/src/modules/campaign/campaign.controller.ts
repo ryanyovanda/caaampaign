@@ -26,6 +26,11 @@ export class CampaignController {
     return this.campaignService.findAll();
   }
 
+  @Get('slug/:slug')
+  findBySlug(@Param('slug') slug: string) {
+    return this.campaignService.findBySlug(slug);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.campaignService.findOne(id);

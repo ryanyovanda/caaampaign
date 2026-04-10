@@ -40,6 +40,14 @@ export class CampaignService {
     return campaign;
   }
 
+  async findBySlug(slug: string): Promise<Campaign> {
+    const campaign = await this.campaignRepo.findOneBy({ slug });
+    if (!campaign) {
+      throw new NotFoundException(`Campaign with slug "${slug}" not found`);
+    }
+    return campaign;
+  }
+
   async update(id: string, dto: UpdateCampaignDto): Promise<Campaign> {
     const campaign = await this.findOne(id);
 
