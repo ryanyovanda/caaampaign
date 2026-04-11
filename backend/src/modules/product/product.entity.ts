@@ -14,6 +14,9 @@ export class Product {
     @Column({name: 'description', type: 'text'})
     description: string;
 
+    @Column({name: 'event_date', type: 'date'})
+    eventDate: string;
+
     @CreateDateColumn({name: 'created_at', type: 'timestamp', default: 'now()'})    
     createdAt: Date;
 

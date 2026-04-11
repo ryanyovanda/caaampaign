@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsDateString, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateProductDto {
     @IsString()
@@ -12,4 +12,8 @@ export class CreateProductDto {
     @IsString()
     @IsNotEmpty()
     description: string;
+
+    @IsDateString()
+    @IsNotEmpty()
+    eventDate: string;
 }

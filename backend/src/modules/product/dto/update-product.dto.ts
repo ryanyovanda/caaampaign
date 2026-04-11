@@ -1,16 +1,22 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsDateString, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class UpdateProductDto {
     @IsString()
     @IsNotEmpty()
-    campaignId: string;
+    @IsOptional()
+    campaignId?: string;
 
     @IsString()
     @IsNotEmpty()
-    productName: string;
+    @IsOptional()
+    productName?: string;
 
     @IsString()
     @IsNotEmpty()
-    description: string;
+    @IsOptional()
+    description?: string;
 
+    @IsDateString()
+    @IsOptional()
+    eventDate?: string;
 }

@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CampaignModule } from './modules/campaign/campaign.module';
 import { ProductModule } from './modules/product/product.module';
+import { SubmissionModule } from './modules/submission/submission.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ProductModule } from './modules/product/product.module';
     }),
     CampaignModule,
     ProductModule,
+    SubmissionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

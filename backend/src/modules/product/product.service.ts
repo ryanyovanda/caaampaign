@@ -26,6 +26,7 @@ export class ProductService {
             campaignId: dto.campaignId,
             productName: dto.productName,
             description: dto.description,
+            eventDate: dto.eventDate,
         })
 
         return this.productRepo.save(product)
@@ -65,6 +66,7 @@ export class ProductService {
             ...(dto.campaignId !== undefined && { campaignId: dto.campaignId }),
             ...(dto.productName !== undefined && { productName: dto.productName }),
             ...(dto.description !== undefined && { description: dto.description }),
+            ...(dto.eventDate !== undefined && { eventDate: dto.eventDate }),
         })
 
         return this.productRepo.save(product)
