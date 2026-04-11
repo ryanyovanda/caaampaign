@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { campaignApi } from '@/lib/api';
 import type { Campaign } from '@/types';
+import { TypingText } from '@/components/typing-text';
 
 export default async function HomePage() {
   let campaigns: Campaign[] = [];
@@ -16,8 +17,10 @@ export default async function HomePage() {
   return (
     <>
       <section className="relative flex flex-col items-center justify-center px-6 py-28 text-center">
-        <h1 className="max-w-3xl text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-5xl">
-          Discover CAAAMPAIGN
+        <h1 className="max-w-3xl text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+          Discover
+          <br />
+          <TypingText />
           <br />
           that matter.
         </h1>
