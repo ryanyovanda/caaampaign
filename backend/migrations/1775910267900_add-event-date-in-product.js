@@ -3,7 +3,7 @@
 exports.shorthands = undefined;
 
 exports.up = (pgm) => {
-    pgm.addColumns('submission', {
+    pgm.addColumns('product', {
         event_date: {
             type: 'date',
             notNull: false,
@@ -12,7 +12,7 @@ exports.up = (pgm) => {
 };
 
 exports.down = (pgm) => {
-    pgm.dropColumns('submission', [
+    pgm.dropColumns('product', [
         'event_date',
     ]);
 };
