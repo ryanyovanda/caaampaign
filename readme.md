@@ -57,6 +57,18 @@ Browser (User / Admin)
 
 ---
 
+## Data Modeling
+
+The Caaampaign platform organises its content into three entities that form a strict parent-child-grandchild hierarchy: **Campaign → Product → Submission**. Each entity maps directly to a PostgreSQL table. There are no CMS-style "sections" or dynamic content blocks — every piece of content has a fixed schema, which keeps queries simple and predictable.
+
+```
+campaign          (the top-level container — the "event programme")
+  └── product     (an event/ticket within that campaign)
+        └── submission  (a person who registered for that product)
+```
+
+---
+
 ## Frontend
 
 ### Technology Stack
